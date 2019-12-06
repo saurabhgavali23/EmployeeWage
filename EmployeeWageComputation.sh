@@ -3,7 +3,8 @@
 echo "Welcom to Employee Wage Computation program"
 
 WAGE_PER_HR=20
-WORKING_HR=8
+FULLDAY_WORKING_HR=8
+HALFDAY_WORKING_HR=4
 
 	rand=$((RANDOM%2))
 
