@@ -2,6 +2,9 @@
 
 echo "Welcom to Employee Wage Computation program"
 
+WAGE_PER_HR=20
+WORKING_HR=8
+
 	rand=$((RANDOM%2))
 
 	if (( $rand == 0 ))
@@ -9,4 +12,5 @@ echo "Welcom to Employee Wage Computation program"
 		echo "Employee Absent"
 	else
 		echo "Employee Present"
+		echo $(($WAGE_PER_HR * $WORKING_HR )) 
 	fi
