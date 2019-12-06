@@ -5,13 +5,22 @@ echo "Welcom to Employee Wage Computation program"
 WAGE_PER_HR=20
 FULLDAY_WORKING_HR=8
 HALFDAY_WORKING_HR=4
+absentEmp=0
+fullTimeEmp=1
+partTimeEmp=2
 
-	rand=$((RANDOM%2))
+	rand=$((RANDOM%3))
 
-	if (( $rand == 0 ))
-	then
-		echo "Employee Absent"
-	else
-		echo "Employee Present"
-		echo $(($WAGE_PER_HR * $WORKING_HR )) 
-	fi
+	case $rand in
+
+		$absentEmp)
+				echo "Employee Absent";;
+		$fullTimeEmp)
+				echo "FullTime Employee Present"
+				echo $(($WAGE_PER_HR * $FULLDAY_WORKING_HR ));;
+		$partTimeEmp)
+				echo "PartTime Employee Present"
+				echo $(($WAGE_PER_HR * $HALFDAY_WORKING_HR ));;
+			*)
+				echo "Invalid Option";;
+	esac
