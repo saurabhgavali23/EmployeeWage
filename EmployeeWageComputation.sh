@@ -12,25 +12,34 @@ hours=0
 fullTimeEmp=1
 partTimeEmp=2
 
+function getWorkHrs(){
+	local empCheck=$1
+
+	if (( $empCheck == 1 ))
+	then
+		echo	$(($hours + $FULLDAY_WORKING_HR))
+	else
+		echo	$(($hours + $HALFDAY_WORKING_HR))
+	fi
+}
+
 	while (( $day < $WORK_PER_MONTH && $hours < 100 ))
 	do
 
-	empCheck=$((RANDOM%2))
+	empCheck=$((RANDOM%3))
 
 	case $empCheck in
 
-		absentEmp)
+		$absentEmp)
 				echo "Employee Absent";;
 		$fullTimeEmp)
 				echo "FullTime Employee Present"
 				echo $(($WAGE_PER_HR * $FULLDAY_WORKING_HR ))
-				hours=$(($hours + $FULLDAY_WORKING_HR));;
+				echo "$( getWorkHrs $fullTimeEmp )";;
 		$partTimeEmp)
 				echo "PartTime Employee Present"
 				echo $(($WAGE_PER_HR * $HALFDAY_WORKING_HR ))
-				hours=$(($hours + $HALFDAY_WORKING_HR));;
-			*)
-				echo "Invalid Option";;
+				echo "$( getWorkHrs $partTimeEmp )";;
 	esac
 	day=$(($day+1))
 done
