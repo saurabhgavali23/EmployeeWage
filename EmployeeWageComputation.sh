@@ -5,11 +5,16 @@ echo "Welcom to Employee Wage Computation program"
 WAGE_PER_HR=20
 FULLDAY_WORKING_HR=8
 HALFDAY_WORKING_HR=4
+WORK_PER_MONTH=20
 absentEmp=0
+day=0
 fullTimeEmp=1
 partTimeEmp=2
 
-	empCheck=$((RANDOM%3))
+	while (( $day < $WORK_PER_MONTH ))
+	do
+
+	empCheck=$((RANDOM%2))
 
 	case $empCheck in
 
@@ -24,4 +29,5 @@ partTimeEmp=2
 			*)
 				echo "Invalid Option";;
 	esac
-
+	day=$(($day+1))
+done
