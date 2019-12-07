@@ -9,9 +9,9 @@ absentEmp=0
 fullTimeEmp=1
 partTimeEmp=2
 
-	rand=$((RANDOM%3))
+	empCheck=$((RANDOM%3))
 
-	case $rand in
+	case $empCheck in
 
 		$absentEmp)
 				echo "Employee Absent";;
