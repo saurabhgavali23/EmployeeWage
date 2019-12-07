@@ -8,10 +8,11 @@ HALFDAY_WORKING_HR=4
 WORK_PER_MONTH=20
 absentEmp=0
 day=0
+totalDay=0
 hours=0
 fullTimeEmp=1
 partTimeEmp=2
-
+count=0
 function getWorkHrs(){
 	local empCheck=$1
 
@@ -34,12 +35,17 @@ function getWorkHrs(){
 				echo "Employee Absent";;
 		$fullTimeEmp)
 				echo "FullTime Employee Present"
-				echo $(($WAGE_PER_HR * $FULLDAY_WORKING_HR ))
-				echo "$( getWorkHrs $fullTimeEmp )";;
+				DailyWage[((count++))]=$(( $day + $FULLDAY_WORKING_HR ))
+				totalDailyWage[((totalDay++))]=$(($WAGE_PER_HR * $FULLDAY_WORKING_HR ))
+				hours="$( getWorkHrs $fullTimeEmp )";;
 		$partTimeEmp)
 				echo "PartTime Employee Present"
-				echo $(($WAGE_PER_HR * $HALFDAY_WORKING_HR ))
-				echo "$( getWorkHrs $partTimeEmp )";;
+				DailyWage[((count++))]=$(( $day + $HALFDAY_WORKING_HR ))
+				totalDailyWage[((totalDay++))]=$(($WAGE_PER_HR * $HALFDAY_WORKING_HR ))
+				hours="$( getWorkHrs $partTimeEmp )";;
 	esac
 	day=$(($day+1))
 done
+
+echo ${DailyWage[@]}
+echo ${totalDailyWage[@]}
