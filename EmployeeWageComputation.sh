@@ -9,13 +9,19 @@ absentEmp=0
 fullTimeEmp=1
 partTimeEmp=2
 
-	empCheck=$((RANDOM%2))
+	empCheck=$((RANDOM%3))
 
-	if (( $empCheck == 0 ))
-	then
-		echo "Employee Absent"
-	else
-		echo "Employee Present"
-		echo $(($WAGE_PER_HR * $WORKING_HR )) 
-	fi
+	case $empCheck in
+
+		absentEmp)
+				echo "Employee Absent";;
+		$fullTimeEmp)
+				echo "FullTime Employee Present"
+				echo $(($WAGE_PER_HR * $FULLDAY_WORKING_HR ));;
+		$partTimeEmp)
+				echo "PartTime Employee Present"
+				echo $(($WAGE_PER_HR * $HALFDAY_WORKING_HR ));;
+			*)
+				echo "Invalid Option";;
+	esac
 
