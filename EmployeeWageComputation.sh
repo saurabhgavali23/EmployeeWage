@@ -58,9 +58,6 @@ function getWorkHrs(){
 	day=$(($day+1))
 done
 
-#echo ${DailyWage[@]}
-#echo ${totalDailyWage[@]}
-
 len=${#storeTotalDailyWage[@]}
 for (( i=0; i<$len;i++ ))
 do
