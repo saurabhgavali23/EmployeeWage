@@ -23,9 +23,9 @@ function getWorkHrs(){
 
 	if (( $empCheck == 1 ))
 	then
-		echo	$(($hours + $FULLDAY_WORKING_HR))
+		echo	$(($hour + $FULLDAY_WORKING_HR))
 	else
-		echo	$(($hours + $HALFDAY_WORKING_HR))
+		echo	$(($hour + $HALFDAY_WORKING_HR))
 	fi
 }
 
@@ -40,17 +40,13 @@ function getWorkHrs(){
 				echo "Employee Absent";;
 		$fullTimeEmp)
 				echo "FullTime Employee Present"
-				#DailyWage[((count++))]=$(( $day + $FULLDAY_WORKING_HR ))
-				#totalDailyWage[((totalDay++))]=$(($WAGE_PER_HR * $FULLDAY_WORKING_HR ))
 				dailyWage=$(( $day + $FULLDAY_WORKING_HR ))
 				monthlyWage=$(( $dailyWage * $WAGE_PER_HR ))
 				hours="$( getWorkHrs $fullTimeEmp )"
 				storeTotalDailyWage["Day_$day"]="$dailyWage	$monthlyWage";;
 		$partTimeEmp)
 				echo "PartTime Employee Present"
-				#DailyWage[((count++))]=$(( $day + $HALFDAY_WORKING_HR ))
-				#totalDailyWage[((totalDay++))]=$(($WAGE_PER_HR * $HALFDAY_WORKING_HR ))
-				dailyWage=$(( $day + $FULLDAY_WORKING_HR ))
+				dailyWage=$(( $day + $HALFDAY_WORKING_HR ))
 				monthlyWage=$(( $dailyWage * $WAGE_PER_HR ))
 				hours="$( getWorkHrs $partTimeEmp )"
 				storeTotalDailyWage["Day_$day"]="$dailyWage	$monthlyWage";;
